@@ -1,5 +1,5 @@
 # tRNA-m5C
-Scripts for tRNA BS-seq alignmtns.
+Scripts for tRNA BS-seq alignment.
 
 Requirement:
 pysam (0.15.2 tested)
@@ -12,23 +12,23 @@ scipy
 
 ### Metadata
 
-(1) mature tRNA fasta (from GtRNAdb)
+(1) mature tRNA sequences (from GtRNAdb)
 
-(2) mRNA reference (from Ensembl/UCSC/etc.)
+(2) mRNA reference sequences (from Ensembl/UCSC/etc.)
 
-(3) rRNA reference (from SILVA)
+(3) rRNA reference sequences (from SILVA)
 
 ### Reference preparation
 
-Note: this step aims to remove duplicate sequences from the mature tRNA file from GtRNAdb. For example, tRNA-Arg-ACG-1-1 and tRNA-Arg-ACG-1-2 are copies of tRNA-Arg-ACG-1 and have identical sequence, so they should be considered as ONE sequence in the analysis. Then CCA tail will be appended to the mature tRNA sequences to ensure accuracy alignments.
+Note: this step aims to remove duplicate sequences from the mature tRNA sequence file from GtRNAdb. For example, tRNA-Arg-ACG-1-1 and tRNA-Arg-ACG-1-2 are copies of tRNA-Arg-ACG-1 and have an identical sequence, so they should be considered as ONE sequence in the analysis. Then the CCA tail is appended to the mature tRNA sequences to ensure accurate alignment.
 
-python format_mature_fasta.py <mature.fa> > <mature.format.fa>
+python format_mature_fasta.py <mature.tRNA.fa> > <mature.tRNA.format.fa>
 
 \# Do it yourself, seperate mitochondrial tRNA sequence and mRNA sequence from Ensembl cDNA fasta file, add CCA tail for them.
 
-\# Suppose you have <MT.fa> and <mRNA.fa>
+\# Suppose you have <MT.tRNA.fa> and <mRNA.fa>
 
-cat <mature.format.fa> <MT.fa> > <tRNA.fa>
+cat <mature.tRNA.format.fa> <MT.tRNA.fa> > <tRNA.fa>
 
 python add_CCA.py <tRNA.fa> > <tRNA.CCA.fa>
 

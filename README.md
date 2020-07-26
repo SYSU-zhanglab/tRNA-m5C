@@ -52,7 +52,7 @@ fastq_c2a.py -i <read1.cutadapt.fastq> > <read1.cutadapt.c2t.fastq>
 
 fastq_g2a.py -i <read2.cutadapt.fastq> > <read2.cutadapt.g2a.fastq>
 
-#### 3. Alignment. -X 80 for maximum PE alignment distance; -k 50 for no too long running time, you can change it to -a.
+#### 3. Alignment. -X 80 for maximum PE alignment distance; -k 50 for a shorter running time, you can change it to -a.
 bowtie2 -x {bowtie2_index} --end-to-end --no-mixed --norc --no-unal -k 50 -p 20 -S <bowtie2.sam> -1 <read1.cutadapt.c2t.fastq> -2 <read2.cutadapt.g2a.fastq>
 
 #### 4. Rescue Cs in the SAM
@@ -63,7 +63,7 @@ python tRNA_bam_recovery_PE.py -i <bowtie2.sam> -o <bowtie2.bam> -f <read1.cutad
 
 python filter_tRNA_alignments.v2.py -i <tRNA.bam> -o <tRNA.filtered.bam>
 
-#### 6. Sort and index, adjust -@ and -m for better performence
+#### 6. Sort and index, adjust -@ and -m for a better performence
 
 samtools sort -@ 4 -m 4G -o <tRNA.filtered.sorted.bam><tRNA.filtered.bam>
 
